@@ -1,9 +1,8 @@
-import './assets/main.css'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-
 import App from './App.vue'
 import router from './router'
+import '@/styles/common.scss'
 
 //测试接口函数
 import { getCategory } from './apis/testApi'
