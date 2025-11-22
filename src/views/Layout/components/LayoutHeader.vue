@@ -1,5 +1,21 @@
-<script setup>
+<script setup lang="ts">
+import { getCategoryName } from '@/apis/getCategoryName'
+import { onMounted, ref } from 'vue'
+import type { CategoryItem } from '@/types/category'
 
+// 👇这里是关键，给 ref 指定类型
+const categoryList = ref<CategoryItem[]>([])
+
+const getCategory = async () => {
+  const res = await getCategoryName()
+  // 因为你在 api 里传了泛型 CategoryResponse
+  // 所以 request 返回的 data 已经有类型了
+  categoryList.value = res.data.result
+}
+
+onMounted(() => {
+  getCategory()
+})
 </script>
 
 <template>
@@ -12,14 +28,8 @@
         <li class="home">
           <RouterLink to="/">首页</RouterLink>
         </li>
-        <li>
-          <RouterLink to="/">居家</RouterLink>
-        </li>
-        <li>
-          <RouterLink to="/">美食</RouterLink>
-        </li>
-        <li>
-          <RouterLink to="/">服饰</RouterLink>
+        <li v-for="item in categoryList" :key="item.id">
+          <RouterLink to="/">{{ item.name }}</RouterLink>
         </li>
       </ul>
       <div class="search">
@@ -70,7 +80,7 @@
           display: inline-block;
         }
 
-        &:hover {
+        &:hover a{
           color: $xtxColor;
           border-bottom: 1px solid $xtxColor;
         }
@@ -131,5 +141,5 @@
       }
     }
   }
-} 
+}
   </style>

@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 // 暂时先空着，后面写逻辑
 </script>
 
