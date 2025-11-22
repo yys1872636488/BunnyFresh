@@ -1,23 +1,11 @@
 <script setup lang="ts">
-import { getCategoryName } from '@/apis/getCategoryName'
-import { onMounted, ref } from 'vue'
-import type { CategoryItem } from '@/types/category'
 import { useScroll } from '@vueuse/core'
+import {useCategoryStore} from '@/stores/catogory.ts'
+import { storeToRefs } from 'pinia'
 
-// 👇这里是关键，给 ref 指定类型
-const categoryList = ref<CategoryItem[]>([])
-const getCategory = async () => {
-  const res = await getCategoryName()
-  // 因为你在 api 里传了泛型 CategoryResponse
-  // 所以 request 返回的 data 已经有类型了
-  categoryList.value = res.data.result
-}
-
+const catagoryStore = useCategoryStore()
+const { categoryList } = storeToRefs(catagoryStore)
 const { y } = useScroll(window)
-
-onMounted(() => {
-  getCategory()
-})
 </script>
 <template>
   <div class="app-header-sticky" :class="{show: y > 187}">

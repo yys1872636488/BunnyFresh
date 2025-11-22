@@ -4,7 +4,7 @@
 
 <template>
   <div class="">
-
+    我是人气推荐
   </div>
 </template>
 

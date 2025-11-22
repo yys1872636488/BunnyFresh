@@ -4,7 +4,7 @@
 
 <template>
   <div class="">
-
+    我是轮播图banner
   </div>
 </template>
 

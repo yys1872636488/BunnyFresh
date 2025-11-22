@@ -4,7 +4,7 @@
 
 <template>
   <div class="">
-
+    我是新品好物
   </div>
 </template>
 
