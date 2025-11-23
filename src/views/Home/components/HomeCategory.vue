@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {useCategoryStore} from '@/stores/catogory.ts'
-// import type {CategoryChildren } from '@/types/category.ts'
+
 import { storeToRefs } from 'pinia'
 
 const categoryStore = useCategoryStore()
