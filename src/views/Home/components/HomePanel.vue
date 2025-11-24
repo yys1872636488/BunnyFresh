@@ -22,6 +22,7 @@ defineProps({
 <!--        主题内容区域-->
         <div>
           <slot name="main"></slot>
+          <slot></slot>
         </div>
       </div>
     </div>
