@@ -1,21 +1,12 @@
 <script setup lang="ts">
-import {getBannerApi} from "@/apis/home.ts";
-import type {BannerImg} from "@/types/banner.ts";
-import {onMounted, ref} from "vue";
+import {useBanner} from "@/views/Home/composables/useBanner.ts";
+import {toRef} from "vue";
 
 const props = defineProps<{
-  distributionSite?: string;
+  distributionSite?: string
 }>()
-const bannerList = ref<BannerImg[]>()
-const getBanner = async () => {
-  const res = await getBannerApi(props.distributionSite)
-  bannerList.value = res.data.result
-}
-
-onMounted( () => {
-  getBanner()
-})
-
+const distributionSiteRef = toRef(props, 'distributionSite');
+const { bannerList } = useBanner(distributionSiteRef)
 </script>
 
 <template>

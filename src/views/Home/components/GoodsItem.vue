@@ -2,7 +2,7 @@
 import type {Goods} from "@/types/product.ts";
 
 defineProps<{
-  good: Goods
+   good: Goods
 }>()
 </script>
 

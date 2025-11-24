@@ -1,16 +1,8 @@
 <script setup lang="ts">
 import HomePanel from './HomePanel.vue'
-import type {HotGoods} from "@/types/hot.ts";
-import {getHotApi} from '@/apis/home.ts'
-import {onMounted, ref} from "vue";
+import {useProduct} from "@/views/Home/composables/useProduct.ts";
 
-const hotGoods = ref<HotGoods[]>([])
-const getHot = async ()=>{
-  const res = await getHotApi()
-  hotGoods.value = res.data.result
-}
-
-onMounted(() => {getHot()})
+const {hotGoods} = useProduct()
 </script>
 
 <template>

@@ -1,20 +1,9 @@
 <script setup lang="ts">
 import HomePanel from './HomePanel.vue'
-import {getGoodsApi} from "@/apis/home.ts";
-import {onMounted, ref} from "vue";
-import type {CategoryGoods} from "@/types/product.ts";
 import GoodsItem from "@/views/Home/components/GoodsItem.vue";
+import {useProduct} from "@/views/Home/composables/useProduct.ts";
 
-const goodsList = ref<CategoryGoods[]>([])
-const getGoods = async () => {
-  const res = await getGoodsApi()
-  goodsList.value = res.data.result
-}
-
-onMounted(() => {
-  getGoods()
-})
-
+const {goodsList} = useProduct()
 </script>
 
 <template>
