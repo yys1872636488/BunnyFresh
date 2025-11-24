@@ -5,7 +5,6 @@ import LayoutNav from './components/LayoutNav.vue';
 import LayoutFixed from './components/LayoutFixed.vue';
 import {useCategoryStore} from '@/stores/catogory.ts'
 import {onMounted} from "vue";
-
 const useCategory = useCategoryStore()
 
 onMounted(() => {

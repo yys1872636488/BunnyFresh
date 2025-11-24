@@ -3,9 +3,12 @@ import {getBannerApi} from "@/apis/home.ts";
 import type {BannerImg} from "@/types/banner.ts";
 import {onMounted, ref} from "vue";
 
+const props = defineProps<{
+  distributionSite?: string;
+}>()
 const bannerList = ref<BannerImg[]>()
 const getBanner = async () => {
-  const res = await getBannerApi()
+  const res = await getBannerApi(props.distributionSite)
   bannerList.value = res.data.result
 }
 
@@ -18,8 +21,6 @@ onMounted( () => {
 <template>
   <div class="home-banner">
     <el-carousel
-      direction="vertical"
-      motion-blur
       :autoplay="true"
       :interval="3000"
       height="500px"

@@ -71,7 +71,7 @@
 <style scoped lang="scss">
 .app-footer {
   background-color: #f5f5f5;
-  padding-top: 20px;
+
   .contact {
     background: #fff;
 

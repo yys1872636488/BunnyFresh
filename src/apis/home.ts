@@ -18,9 +18,12 @@ export function getHotApi(){
 }
 
 
-export function getBannerApi(){
+export const getBannerApi = (distributionSite: string='1') =>{
   return httpInstance<BannerResponse>({
-    url: '/home/banner'
+    url: '/home/banner',
+    params: {
+      distributionSite
+    }
   })
 }
 
