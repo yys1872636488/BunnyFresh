@@ -5,3 +5,4 @@ export function getCategoryApi(){
     url: '/home/category/head'
   })
 }
+
