@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import HomePanel from './HomePanel.vue'
-import {useProduct} from "@/views/Home/composables/useProduct.ts";
+import {useHot} from '../composables/useHot.ts'
 
-const {hotGoods} = useProduct()
+const {hotGoods} = useHot()
 </script>
 
 <template>
