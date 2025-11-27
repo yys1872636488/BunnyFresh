@@ -1,34 +1,16 @@
 <script setup lang="ts">
-import {getDetailHotApi} from "@/apis/detail.ts";
-import type {resultItem} from "@/types/detailHot.ts"
-import {computed, onMounted, ref} from "vue";
 import {useRoute} from "vue-router";
+import {useDetailHot} from "@/views/detail/composables/uesDetailHot.ts";
 
+const route = useRoute()
 const props = withDefaults(defineProps<{
   hotType?: number
 }>(),{
   hotType: 1
 })
 
-const TITLEMAP: Record<number, string> = {
-  1: '24小时热榜',
-  2: '周热榜',
-}
+const {title,hotList} = useDetailHot(String(route.params.id),props.hotType)
 
-const title = computed(() => {
-  return TITLEMAP[props.hotType]
-})
-
-const route = useRoute()
-const hotList = ref<resultItem[]>([])
-const getDetailHot = async () => {
-  const res = await getDetailHotApi({
-    id: String(route.params.id),
-    type: props.hotType,
-  })
-  hotList.value = res.data.result
-}
-onMounted(() => {getDetailHot()})
 </script>
 
 <template>
@@ -45,7 +27,7 @@ onMounted(() => {getDetailHot()})
 
 <style scoped lang="scss">
 .goods-hot {
-
+  margin-bottom: 50px;
   h3 {
     background: $helpColor;
     height: 70px;
