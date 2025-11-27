@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import {useDetail} from "@/views/detail/composables/useDetail.ts";
 import DetailHot from "./components/DetailHot.vue"
-import imageView from "@/components/imageView/index.vue"
 
 const {goods} = useDetail()
+
+const skuChange = (sku: any) =>{
+  console.log(sku)
+}
 </script>
 
 <template>
@@ -24,10 +27,10 @@ const {goods} = useDetail()
       <!--      商品信息-->
       <div class="info-container">
         <div>
-          <div class="goods-info">
+          <div class="goods-info" v-if="goods">
             <div class="media">
               <!--              图片预览区-->
-              <image-view/>
+              <XtxImageView :imageList="goods.mainPictures"/>
               <!--              统计数量 -->
               <ul class="goods-sales">
                 <li>
@@ -54,11 +57,11 @@ const {goods} = useDetail()
             </div>
             <div class="spec">
               <!--              商品信息区-->
-              <p class="g-name">{{ goods?.name }}</p>
-              <p class="g-desc">{{ goods?.desc }}</p>
+              <p class="g-name">{{ goods.name }}</p>
+              <p class="g-desc">{{ goods.desc }}</p>
               <p class="g-price">
-                <span>{{ goods?.price }}</span>
-                <span>{{ goods?.oldPrice }}</span>
+                <span>{{ goods.price }}</span>
+                <span>{{ goods.oldPrice }}</span>
               </p>
               <div class="g-service">
                 <dl>
@@ -75,8 +78,8 @@ const {goods} = useDetail()
                   </dd>
                 </dl>
               </div>
-
               <!-- sku组件 -->
+              <XtxSku :goods="goods" @change="skuChange"/>
 
               <!-- 数据组件 -->
 

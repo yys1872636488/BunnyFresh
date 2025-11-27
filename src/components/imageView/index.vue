@@ -1,13 +1,10 @@
 <script setup lang="ts">
 import {ref} from "vue";
 
-const imageList = [
-  "https://yanxuan-item.nosdn.127.net/d917c92e663c5ed0bb577c7ded73e4ec.png",
-  "https://yanxuan-item.nosdn.127.net/e801b9572f0b0c02a52952b01adab967.jpg",
-  "https://yanxuan-item.nosdn.127.net/b52c447ad472d51adbdde1a83f550ac2.jpg",
-  "https://yanxuan-item.nosdn.127.net/f93243224dc37674dfca5874fe089c60.jpg",
-  "https://yanxuan-item.nosdn.127.net/f881cfe7de9a576aaeea6ee0d1d24823.jpg"
-]
+const props = defineProps<{
+  imageList: string[] | undefined;
+}>()
+
 
 const activeIndex = ref(0)
 const enderHander = (i:number) => {
@@ -19,9 +16,9 @@ const enderHander = (i:number) => {
   <div class="goods-image">
 <!--    左侧大图-->
     <div class="middle" ref="target">
-      <img :src="imageList[activeIndex]" alt="">
+      <img :src="props.imageList?.[activeIndex]" alt="">
       <!-- 蒙层小滑块 -->
-      <div class="layer" :style="{ left: `0px`, top: `0px` }"></div>
+<!--      <div class="layer" :style="{ left: `0px`, top: `0px` }"></div>-->
     </div>
 <!--    小图标列表-->
     <ul class="small">
