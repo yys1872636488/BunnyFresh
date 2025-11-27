@@ -1,19 +1,7 @@
 <script setup lang="ts">
-
-import type {GoodsDetail} from "@/types/detailPage.ts";
-import {onMounted, ref} from "vue";
-import {getDetailApi} from "@/apis/detail.ts";
-import {useRoute} from "vue-router";
-
-const route = useRoute();
-const goods = ref<GoodsDetail | null>(null);
-const getDetail = async () => {
-  const res = await getDetailApi(String(route.params.id));
-  goods.value = res.data.result;
-}
-onMounted(() => {
-  getDetail()
-});
+import {useDetail} from "@/views/detail/composables/useDetail.ts";
+import DetailHot from "./components/DetailHot.vue"
+const {goods} = useDetail()
 </script>
 
 <template>
@@ -119,7 +107,8 @@ onMounted(() => {
             </div>
 <!--            24热榜+专题推荐-->
             <div class="goods-aside">
-
+              <DetailHot :hotType="1"/>
+              <DetailHot :hotType="2"/>
             </div>
           </div>
         </div>
