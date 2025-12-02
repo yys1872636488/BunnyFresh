@@ -12,6 +12,9 @@ export const useUserStore = defineStore('user', () => {
     const res = await getUserApi({account, password})
     userInfo.value =  res.data.result
   }
-
   return {userInfo, getUserInfo}
-})
+},
+{
+  persist: true
+}
+)
