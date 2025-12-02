@@ -8,7 +8,7 @@
     <div class="t=container">
       <ul>
         <!-- 已登录 -->
-        <template v-if="true">
+        <template v-if="false">
           <li><a href="#"><i class="iconfont icon-user"></i>周杰伦</a></li>
           <li>
           <!-- element-plue标签，用于 -->
@@ -23,7 +23,7 @@
         </template>
         <!-- 未登录 -->
         <template v-else>
-          <li><a href="#">请先登录</a></li>
+          <li><a href="#" @click="$router.push('/login')">请先登录</a></li>
           <li><a href="#">帮助中心</a></li>
           <li><a href="#">关于我们</a></li>
         </template>
