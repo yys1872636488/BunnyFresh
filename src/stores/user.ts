@@ -2,6 +2,7 @@ import {defineStore} from 'pinia'
 import {ref} from 'vue'
 import type {userInfoResponse} from "@/types/user.ts";
 import {getUserApi} from "@/apis/user.ts";
+import router from '@/router';
 
 export const useUserStore = defineStore('user', () => {
   //state
@@ -12,7 +13,12 @@ export const useUserStore = defineStore('user', () => {
     const res = await getUserApi({account, password})
     userInfo.value =  res.data.result
   }
-  return {userInfo, getUserInfo}
+
+  const clearUserInfo = () => {
+    userInfo.value = null
+    router.push('/login');
+  }
+  return {userInfo, getUserInfo, clearUserInfo}
 },
 {
   persist: true

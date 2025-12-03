@@ -1,5 +1,14 @@
 <script setup lang="ts">
-// 暂时先空着，后面写逻辑
+import { useUserStore } from '@/stores/user';
+import { storeToRefs } from 'pinia';
+
+const userStore = useUserStore();
+const {userInfo} = storeToRefs(userStore);
+const logout = () => {
+  userStore.clearUserInfo();
+};
+
+
 </script>
 
 <template>
@@ -8,13 +17,13 @@
     <div class="t=container">
       <ul>
         <!-- 已登录 -->
-        <template v-if="false">
-          <li><a href="#"><i class="iconfont icon-user"></i>周杰伦</a></li>
+        <template v-if="userInfo?.token">
+          <li><a href="#"><i class="iconfont icon-user"></i>{{ userInfo.account }}</a></li>
           <li>
           <!-- element-plue标签，用于 -->
           <el-popconfirm title="确认退出吗？" confirm-button-text="确认" cancel-button-text="取消">
             <template #reference>
-              <a href="#">退出登录</a>
+              <a href="#" @click="logout">退出登录</a>
             </template>
           </el-popconfirm>
           </li>
